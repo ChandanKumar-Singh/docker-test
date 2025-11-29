@@ -1,0 +1,20 @@
+docker build -t docker-test .
+
+# docker run -d\
+# --restart=always \
+# --name docker-test-app -p 3000:3000 docker-test
+
+
+docker run -d \
+  --name docker-test-pm2 \
+  -p 3000:3000 \
+  docker-test-pm2
+
+
+ docker logs -f  docker-test-pm2
+
+  
+ docker start  docker-test-pm2
+
+docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}"
+docker port docker-test-pm2
